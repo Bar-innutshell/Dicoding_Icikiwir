@@ -24,23 +24,41 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val btnMoveWithDataActivity: Button = findViewById(R.id.btn_move_activity_data)
         btnMoveWithDataActivity.setOnClickListener(this)
+
+        val btnMoveWithObject: Button = findViewById(R.id.btn_move_activity_object)
+        btnMoveWithObject.setOnClickListener(this)
     }
 
-   override fun onClick(v: View?){
-        when(v?.id){
+    override fun onClick(v: View?) {
+        when (v?.id) {
             R.id.btn_move_activity -> {
-                val moveIntent =Intent(this@MainActivity, MoveActivity::class.java)
+                val moveIntent = Intent(this@MainActivity, MoveActivity::class.java)
                 startActivity(moveIntent)
             }
 
             R.id.btn_move_activity_data -> {
                 val moveWithDataIntent = Intent(this@MainActivity, MoveWithDataActivity::class.java)
-                moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_NAME, "Dicoding Icikiwir Abis broooooo")
+                moveWithDataIntent.putExtra(
+                    MoveWithDataActivity.EXTRA_NAME,
+                    "Dicoding Icikiwir Abis broooooo"
+                )
                 moveWithDataIntent.putExtra(MoveWithDataActivity.EXTRA_AGE, 5)
                 startActivity(moveWithDataIntent)
             }
 
+            R.id.btn_move_activity_object -> {
+                val person = Person(
+                    "Dicoding Icikiwir Abis broooooo",
+                    5,
+                    "Akademi Sigma Skibidi@gmail.com",
+                    "Jakarta"
+                )
+
+                val moveWithObjectIntent = Intent(this@MainActivity, MoveWithObjectActivity::class.java)
+                moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, person)
+                startActivity(moveWithObjectIntent)
+
+            }
         }
     }
 }
-
